@@ -1,3 +1,12 @@
 <template>
-  <h1 class="text-3xl font-bold underline">Hello World!</h1>
+ <header>
+  <a href="#">
+    <img src="./assets/logo.png" alt="Logo" />
+  </a>
+  <a href="#">
+    <div>
+      Day complete!
+    </div>
+  </a>
+ </header>
 </template>

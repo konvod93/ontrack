@@ -6,7 +6,7 @@ import TheNav from './components/TheNav.vue'
 </script>
 
 <template>
- <TheHeader />
+  <TheHeader />
   <main class="flex grow flex-col">
 
   </main>

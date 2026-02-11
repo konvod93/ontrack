@@ -7,7 +7,10 @@ defineProps({
     currentPage: {
         required: true,
         type: String,
+        validator(currentPage) {
+          return Object.keys(NAV_ITEMS).includes(currentPage)
     }
+  }
 })
 
 const emit = defineEmits(['navigate'])

@@ -2,7 +2,7 @@
 
 import TheHeader from './components/TheHeader.vue'
 import TheNav from './components/TheNav.vue'
-import TheTimeline from './pages/TheTimeLine.vue'
+import TheTimeLine from './pages/TheTimeLine.vue'
 import TheActivities from './pages/TheActivities.vue'
 import TheProgress from './pages/TheProgress.vue'
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from './constants.js'
@@ -26,7 +26,7 @@ function goTo(page) {
     @go-to-progress="goTo(PAGE_PROGRESS)"
    />
   <main class="flex grow flex-col">
-    <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems" />
+    <TheTimeLine v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems" />
     <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>

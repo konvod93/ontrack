@@ -12,6 +12,10 @@ export function isTimelineItemValid({ hour }) {
   return isHourValid(hour)
 }
 
+export function isHourValid(hour) {
+  return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
+}
+
 export function validateSelectOptions(options) {
   return options.every(isSelectOptionValid)
 }
@@ -38,10 +42,6 @@ function isString(value) {
 
 function isBetween(value, start, end) {
   return value >= start && value <= end
-}
-
-function isHourValid(hour) {
-  return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
 }
 
 export function isNumberOrNull(value) {

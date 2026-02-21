@@ -1,5 +1,7 @@
 import { NAV_ITEMS, HOURS_IN_DAY, MIDNIGHT_HOUR, BUTTON_TYPES } from './constants.js'
 
+// public validation functions for the application
+
 export function isPageValid(page) {
   return Object.keys(NAV_ITEMS).includes(page)
 }
@@ -20,10 +22,6 @@ export function isActivityValid(activity) {
   return isNotEmptyString(activity)
 }
 
-function isNotEmptyString(value) {
-  return isString(value) && value.length > 0
-}
-
 export function isHourValid(hour) {
   return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
 }
@@ -39,13 +37,24 @@ export function validateSelectOptions(options) {
 export function isUndefinedOrNull(value) {
   return isUndefined(value) || isNull(value)
 }
-
-function isNull(value) {
-  return value === null
+export function isUndefined(value) {
+  return value === undefined
+}
+export function isNumberOrNull(value) {
+  return isNumber(value) || isNull(value)
 }
 
-function isUndefined(value) {
-  return value === undefined
+export function isSelectOptionValid({ value, label }) {
+  return isNumber(value) && isNotEmptyString(label)
+}
+
+// private validation functions for internal use
+
+function isNotEmptyString(value) {
+  return isString(value) && value.length > 0
+}
+function isNull(value) {
+  return value === null
 }
 
 function isNumber(value) {
@@ -58,12 +67,4 @@ function isString(value) {
 
 function isBetween(value, start, end) {
   return value >= start && value <= end
-}
-
-export function isNumberOrNull(value) {
-  return isNumber(value) || isNull(value)
-}
-
-export function isSelectOptionValid({ value, label }) {
-  return isNumber(value) && isNotEmptyString(label)
 }

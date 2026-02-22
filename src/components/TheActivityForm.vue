@@ -2,13 +2,19 @@
 import BaseButton from './BaseButton.vue';
 import { PlusIcon } from '@heroicons/vue/24/outline';
 import { isActivityValid } from '@/validators.js'
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 
 const activity = ref('')
 
-function submit() {
+async function submit() {
   emit('createActivity', activity.value)
+
   activity.value = ''
+
+  await nextTick()
+
+  window.scrollTo(0, document.body.scrollHeight)
+
 }
 
 const emit = defineEmits({

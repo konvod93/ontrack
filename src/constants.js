@@ -10,6 +10,8 @@ export const PAGE_TIMELINE = 'timeline'
 export const PAGE_ACTIVITIES = 'activities'
 export const PAGE_PROGRESS = 'progress'
 
+export const SECONDS_IN_HOUR = 3600
+
 export const NAV_ITEMS = {
   [PAGE_TIMELINE]: ClockIcon,
   [PAGE_ACTIVITIES]: ListBulletIcon,

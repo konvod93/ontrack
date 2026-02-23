@@ -6,7 +6,12 @@ import TheActivities from './pages/TheActivities.vue'
 import TheProgress from './pages/TheProgress.vue'
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from './constants.js'
 import { ref } from 'vue'
-import { normalizePageHash, generateTimelineItems, generateActivitySelectOptions, generateActivities, id } from './functions.js'
+import {
+  normalizePageHash,
+  generateTimelineItems,
+  generateActivitySelectOptions,
+  generateActivities
+} from './functions.js'
 
 const currentPage = ref(normalizePageHash())
 
@@ -20,18 +25,13 @@ function goTo(page) {
   currentPage.value = page
 }
 
-function createActivity(name) {
-  activities.value.push({
-    id: id(),
-    name,
-    secondsToComplete: 0,
-  })
+function createActivity(activity) {
+  activities.value.push(activity)
 }
 
 function deleteActivity(activity) {
- activities.value.splice(activities.value.indexOf(activity), 1)
+  activities.value.splice(activities.value.indexOf(activity), 1)
 }
-
 </script>
 
 <template>

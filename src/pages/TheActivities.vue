@@ -7,15 +7,15 @@ import TheActivitiesEmptyState from '@/components/TheActivitiesEmptyState.vue'
 
 const emit = defineEmits({
   deleteActivity: isActivityValid,
-  createActivity: isActivityValid,
+  createActivity: isActivityValid
 })
 
 defineProps({
   activities: {
     required: true,
     type: Array,
-    validator: validateActivities,
-  },
+    validator: validateActivities
+  }
 })
 </script>
 
@@ -30,6 +30,6 @@ defineProps({
       />
     </ul>
     <TheActivitiesEmptyState v-else />
-    <TheActivityForm @createActivity="emit('createActivity', $event)" />
+    <TheActivityForm @submit="emit('createActivity', $event)" />
   </div>
 </template>

@@ -9,15 +9,15 @@ import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from '@/constants.js'
 const secondsToComplete = ref(null)
 
 const emit = defineEmits({
-  delete: isUndefined,
+  delete: isUndefined
 })
 
 defineProps({
   activity: {
     required: true,
-    type: String,
-    validator: isActivityValid,
-  },
+    type: Object,
+    validator: isActivityValid
+  }
 })
 </script>
 
@@ -30,8 +30,13 @@ defineProps({
       <span class="text-xl truncate">{{ activity.name }}</span>
     </div>
     <div>
-      <BaseSelect class="font-mono" placeholder="h:mm" :selected="secondsToComplete" :options="PERIOD_SELECT_OPTIONS"
-        @select="secondsToComplete = $event" />
+      <BaseSelect
+        class="font-mono"
+        placeholder="h:mm"
+        :selected="secondsToComplete"
+        :options="PERIOD_SELECT_OPTIONS"
+        @select="secondsToComplete = $event"
+      />
     </div>
   </li>
 </template>

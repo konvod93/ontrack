@@ -6,8 +6,6 @@ import { ref } from 'vue'
 import { isActivityValid, isUndefined } from '@/validators.js'
 import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from '@/constants.js'
 
-const secondsToComplete = ref(null)
-
 const emit = defineEmits({
   delete: isUndefined
 })
@@ -19,6 +17,8 @@ defineProps({
     validator: isActivityValid
   }
 })
+
+const secondsToComplete = ref(0)
 </script>
 
 <template>

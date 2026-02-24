@@ -8,16 +8,16 @@ defineProps({
   timelineItem: {
     required: true,
     type: Object,
-    validator: isTimelineItemValid,
+    validator: isTimelineItemValid
   },
   activitySelectOptions: {
     required: true,
     type: Array,
     validator: validateSelectOptions
-  },
+  }
 })
 
-const selectedActivityId = ref(0)
+const selectedActivityId = ref(null)
 </script>
 
 <template>

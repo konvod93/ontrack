@@ -15,14 +15,14 @@ export const SECONDS_IN_HOUR = 3600
 export const NAV_ITEMS = {
   [PAGE_TIMELINE]: ClockIcon,
   [PAGE_ACTIVITIES]: ListBulletIcon,
-  [PAGE_PROGRESS]: ChartBarIcon,
+  [PAGE_PROGRESS]: ChartBarIcon
 }
 
 export const MIDNIGHT_HOUR = 0
 export const HOURS_IN_DAY = 24
 
 export const PERIOD_SELECT_OPTIONS = [
-  { value: 15, label: '0:15' },
-  { value: 30, label: '0:30' },
-  { value: 45, label: '0:45' },
+  { value: 15 * 60, label: '0:15' },
+  { value: 30 * 60, label: '0:30' },
+  { value: 45 * 60, label: '0:45' }
 ]

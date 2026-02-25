@@ -1,13 +1,23 @@
 <script setup>
-
 import TimelineItem from '../components/TimelineItem.vue'
-import { validateTimelineItems, validateSelectOptions } from '@/validators.js'
+import {
+  validateTimelineItems,
+  validateSelectOptions,
+  validateActivities,
+  isTimelineItemValid,
+  isActivityValid
+} from '@/validators.js'
 
 defineProps({
   timelineItems: {
     required: true,
     type: Array,
     validator: validateTimelineItems
+  },
+  activities: {
+    required: true,
+    type: Array,
+    validator: validateActivities
   },
   activitySelectOptions: {
     required: true,
@@ -16,6 +26,11 @@ defineProps({
   }
 })
 
+const emit = defineEmits({
+  setTimelineItemActivity({ timelineItem, activity }) {
+    return [isTimelineItemValid([timelineItem]), isActivityValid([activity])].every(Boolean)
+  }
+})
 </script>
 
 <template>
@@ -24,8 +39,10 @@ defineProps({
       <TimelineItem
         v-for="timelineItem in timelineItems"
         :key="timelineItem.hour"
+        :activities="activities"
         :timeline-item="timelineItem"
         :activity-select-options="activitySelectOptions"
+        @select-activity="emit('setTimelineItemActivity', { timelineItem, activity: $event })"
       />
     </ul>
   </div>

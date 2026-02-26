@@ -4,7 +4,7 @@ import BaseButton from './BaseButton.vue'
 import { BUTTON_TYPE_NEUTRAL } from '@/constants'
 import { validateSelectOptions, isUndefinedOrNull, isSelectValueValid } from '@/validators.js'
 import { computed } from 'vue'
-import { normalizedSelectValue } from '@/functions.js'
+import { normalizeSelectValue } from '@/functions.js'
 
 const props = defineProps({
   selected: [String, Number],
@@ -28,7 +28,7 @@ const isNotSelected = computed(() => {
 })
 
 function select(value) {
-  emit('select', normalizedSelectValue(value))
+  emit('select', normalizeSelectValue(value))
 }
 </script>
 

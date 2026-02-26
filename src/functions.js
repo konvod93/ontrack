@@ -11,7 +11,7 @@ export function normalizePageHash() {
   return PAGE_TIMELINE
 }
 
-export function normalizedSelectValue(value) {
+export function normalizeSelectValue(value) {
   return isNull(value) || isNaN(value) ? value : +value
 }
 

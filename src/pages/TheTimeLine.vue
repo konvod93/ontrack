@@ -5,8 +5,7 @@ import {
   validateSelectOptions,
   validateActivities,
   isTimelineItemValid,
-  isActivityValid,
-  isNull
+  isActivityValid
 } from '@/validators.js'
 
 defineProps({
@@ -28,8 +27,8 @@ defineProps({
 })
 
 const emit = defineEmits({
-  setTimelineItemActivity({ timelineItem, activity }) {
-    return [isTimelineItemValid([timelineItem]), isNull || isActivityValid([activity])].every(Boolean)
+  setTimelineItemActivity(timelineItem, activity) {
+    return [isTimelineItemValid([timelineItem]), isActivityValid([activity])].every(Boolean)
   }
 })
 </script>
@@ -43,7 +42,7 @@ const emit = defineEmits({
         :activities="activities"
         :timeline-item="timelineItem"
         :activity-select-options="activitySelectOptions"
-        @select-activity="emit('setTimelineItemActivity', { timelineItem, activity: $event })"
+        @select-activity="emit('setTimelineItemActivity', timelineItem, $event)"
       />
     </ul>
   </div>

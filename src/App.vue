@@ -37,8 +37,8 @@ function deleteActivity(activity) {
   })
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
-function setTimelineItemActivity({ timelineItem, activity }) {
-  timelineItem.activityId = activity?.id || null
+function setTimelineItemActivity(timelineItem, activity) {
+  timelineItem.activityId = activity
 }
 function setActivitySecondsToComplete(activity, secondsToComplete) {
   activity.secondsToComplete = secondsToComplete

@@ -21,6 +21,8 @@ export const NAV_ITEMS = {
 export const MIDNIGHT_HOUR = 0
 export const HOURS_IN_DAY = 24
 
+export const NULLABLE_ACTIVITY = { id: 0 }
+
 export const PERIOD_SELECT_OPTIONS = [
   { value: 1 * SECONDS_IN_HOUR, label: '01:00' },
   { value: 2 * SECONDS_IN_HOUR, label: '02:00' },

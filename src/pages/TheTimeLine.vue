@@ -40,7 +40,7 @@ const emit = defineEmits({
     return [isTimelineItemValid(timelineItem), isNumber(activitySeconds)].every(Boolean)
   },
   setTimelineItemActivity(timelineItem, activity) {
-    return [isTimelineItemValid([timelineItem]), isActivityValid([activity])].every(Boolean)
+    return [isTimelineItemValid(timelineItem), isActivityValid(activity)].every(Boolean)
   }
 })
 

@@ -10,7 +10,8 @@ import {
   normalizePageHash,
   generateTimelineItems,
   generateActivitySelectOptions,
-  generateActivities
+  generateActivities,
+  generatePeriodSelectOptions
 } from './functions.js'
 
 const currentPage = ref(normalizePageHash())
@@ -58,6 +59,7 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
 
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
 provide('activitySelectOptions', activitySelectOptions.value)
+provide('periodSelectOptions', generatePeriodSelectOptions())
 provide('timelineItems', timelineItems.value)
 provide('activities', activities.value)
 </script>

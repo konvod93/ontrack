@@ -62,9 +62,9 @@ provide('setActivitySecondsToComplete', setActivitySecondsToComplete)
 provide('setTimelineItemActivity', setTimelineItemActivity)
 provide('createActivity', createActivity)
 provide('deleteActivity', deleteActivity)
-provide('activitySelectOptions', activitySelectOptions.value)
+provide('activitySelectOptions', activitySelectOptions)
 provide('periodSelectOptions', generatePeriodSelectOptions())
-provide('timelineItems', timelineItems.value)
+provide('timelineItems', timelineItems)
 </script>
 
 <template>

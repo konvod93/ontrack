@@ -1,9 +1,18 @@
 <script setup>
-import { inject } from 'vue'
 import ActivityItem from '@/components/ActivityItem.vue'
-import { isNumber, isActivityValid } from '@/validators.js'
+import { isNumber, isActivityValid, validateActivities } from '@/validators.js'
 import TheActivityForm from '@/components/TheActivityForm.vue'
 import TheActivitiesEmptyState from '@/components/TheActivitiesEmptyState.vue'
+
+const props = defineProps({
+  activities: {
+    required: true,
+    type: Array,
+    validator: validateActivities
+  }
+})
+
+const { activities } = props
 
 const emit = defineEmits({
   setActivitySecondsToComplete(activity, secondsToComplete) {
@@ -16,7 +25,6 @@ const emit = defineEmits({
 function setSecondsToComplete(activity, secondsToComplete) {
   emit('setActivitySecondsToComplete', activity, secondsToComplete)
 }
-const activities = inject('activities')
 </script>
 
 <template>

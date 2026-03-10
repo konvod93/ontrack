@@ -5,6 +5,7 @@ import { BUTTON_TYPE_DANGER, BUTTON_TYPE_WARNING, BUTTON_TYPE_SUCCESS, MILLISECO
 import { isTimelineItemValid } from '@/validators'
 import { formatSeconds } from '@/functions'
 import { ref, inject } from 'vue'
+import { updateTimelineItemActivitySecondsKey } from '@/keys'
 
 const props = defineProps({
   timelineItem: {
@@ -14,7 +15,7 @@ const props = defineProps({
   }
 })
 
-const updateTimelineItemActivitySeconds = inject('updateTimelineItemActivitySeconds')
+const updateTimelineItemActivitySeconds = inject(updateTimelineItemActivitySecondsKey)
 
 const seconds = ref(props.timelineItem.activitySeconds)
 

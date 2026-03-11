@@ -5,43 +5,25 @@ import TheTimeLine from './pages/TheTimeLine.vue'
 import TheActivities from './pages/TheActivities.vue'
 import TheProgress from './pages/TheProgress.vue'
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from './constants.js'
-import { ref, computed, provide, readonly } from 'vue'
-import {
-  generateTimelineItems,
-  generateActivitySelectOptions,
-  generateActivities,
-  generatePeriodSelectOptions
-} from './functions.js'
+import { ref, provide, readonly } from 'vue'
+import { generateTimelineItems, generatePeriodSelectOptions } from './functions.js'
 import { currentPage, timelineRef } from './router'
 import * as keys from './keys'
-
-const activities = ref(generateActivities())
+import {
+  setActivitySecondsToComplete,
+  activitySelectOptions,
+  createActivity,
+  deleteActivity,
+  activities
+} from './activities'
 
 const timelineItems = ref(generateTimelineItems(activities.value))
 
-const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
-
-function createActivity(activity) {
-  activities.value.push(activity)
-}
-
-function deleteActivity(activity) {
-  timelineItems.value.forEach((timelineItem) => {
-    if (timelineItem.activityId === activity.id) {
-      timelineItem.activityId = null
-      timelineItem.activitySeconds = 0
-    }
-  })
-  activities.value.splice(activities.value.indexOf(activity), 1)
-}
 function setTimelineItemActivity(timelineItem, activityId) {
   timelineItem.activityId = activityId
 }
 function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
   timelineItem.activitySeconds += activitySeconds
-}
-function setActivitySecondsToComplete(activity, secondsToComplete) {
-  activity.secondsToComplete = secondsToComplete || 0
 }
 
 provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds)

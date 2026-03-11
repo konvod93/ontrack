@@ -16,13 +16,21 @@ import {
   deleteActivity,
   activities
 } from './activities'
-import { timelineItems, setTimelineItemActivity, updateTimelineItemActivitySeconds } from './timeline-items'
+import {
+  timelineItems,
+  setTimelineItemActivity,
+  updateTimelineItemActivitySeconds,
+  resetTimelineItemActivities
+} from './timeline-items'
 
 provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds)
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity)
 provide(keys.createActivityKey, createActivity)
-provide(keys.deleteActivityKey, deleteActivity)
+provide(keys.deleteActivityKey, (activity) => {
+  resetTimelineItemActivities(activity)
+  deleteActivity(activity)
+})
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
 provide(keys.timelineItemsKey, readonly(timelineItems))

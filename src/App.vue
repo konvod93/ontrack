@@ -5,8 +5,8 @@ import TheTimeLine from './pages/TheTimeLine.vue'
 import TheActivities from './pages/TheActivities.vue'
 import TheProgress from './pages/TheProgress.vue'
 import { PAGE_ACTIVITIES, PAGE_PROGRESS, PAGE_TIMELINE } from './constants.js'
-import { ref, provide, readonly } from 'vue'
-import { generateTimelineItems, generatePeriodSelectOptions } from './functions.js'
+import { provide, readonly } from 'vue'
+import { generatePeriodSelectOptions } from './functions.js'
 import { currentPage, timelineRef } from './router'
 import * as keys from './keys'
 import {
@@ -16,15 +16,7 @@ import {
   deleteActivity,
   activities
 } from './activities'
-
-const timelineItems = ref(generateTimelineItems(activities.value))
-
-function setTimelineItemActivity(timelineItem, activityId) {
-  timelineItem.activityId = activityId
-}
-function updateTimelineItemActivitySeconds(timelineItem, activitySeconds) {
-  timelineItem.activitySeconds += activitySeconds
-}
+import { timelineItems, setTimelineItemActivity, updateTimelineItemActivitySeconds } from './timeline-items'
 
 provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds)
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete)

@@ -6,6 +6,7 @@ import { isTimelineItemValid } from '@/validators'
 import { formatSeconds } from '@/functions'
 import { ref, inject } from 'vue'
 import { updateTimelineItemActivitySecondsKey } from '@/keys'
+import { currentHour } from '@/functions'
 
 const props = defineProps({
   timelineItem: {
@@ -21,7 +22,7 @@ const seconds = ref(props.timelineItem.activitySeconds)
 
 const isRunning = ref(false)
 
-const isStartButtonDisabled = props.timelineItem.hour !== new Date().getHours()
+const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
 
 function start() {
   isRunning.value = setInterval(() => {

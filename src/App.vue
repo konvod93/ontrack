@@ -33,7 +33,7 @@ provide(keys.createActivityKey, createActivity)
 provide(keys.deleteActivityKey, deleteActivity)
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
-provide(keys.timelineItemsKey, readonly(timelineItems.value))
+provide(keys.timelineItemsKey, readonly(timelineItems))
 </script>
 
 <template>

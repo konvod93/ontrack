@@ -1,4 +1,5 @@
-import { generateActivities, generateActivitySelectOptions } from './functions'
+import { SECONDS_IN_HOUR } from './constants'
+import { id } from './functions'
 import { ref, computed } from 'vue'
 
 export const activities = ref(generateActivities())
@@ -15,4 +16,16 @@ export function deleteActivity(activity) {
 
 export function setActivitySecondsToComplete(activity, secondsToComplete) {
   activity.secondsToComplete = secondsToComplete || 0
+}
+
+function generateActivities() {
+  return ['Coding', 'Reading', 'Training'].map((name, hours) => ({
+    id: id(),
+    name,
+    secondsToComplete: hours * SECONDS_IN_HOUR
+  }))
+}
+
+function generateActivitySelectOptions(activities) {
+  return activities.map((activity) => ({ value: activity.id, label: activity.name }))
 }

@@ -9,15 +9,8 @@ import { provide, readonly } from 'vue'
 import { generatePeriodSelectOptions } from './functions.js'
 import { currentPage, timelineRef } from './router'
 import * as keys from './keys'
+import { setActivitySecondsToComplete, activitySelectOptions, createActivity, deleteActivity } from './activities'
 import {
-  setActivitySecondsToComplete,
-  activitySelectOptions,
-  createActivity,
-  deleteActivity,
-  activities
-} from './activities'
-import {
-  timelineItems,
   setTimelineItemActivity,
   updateTimelineItemActivitySeconds,
   resetTimelineItemActivities
@@ -33,14 +26,13 @@ provide(keys.deleteActivityKey, (activity) => {
 })
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions))
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions()))
-provide(keys.timelineItemsKey, readonly(timelineItems))
 </script>
 
 <template>
   <TheHeader />
   <main class="flex flex-col grow">
-    <TheTimeLine v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems" :ref="timelineRef" />
-    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
+    <TheTimeLine v-show="currentPage === PAGE_TIMELINE" :ref="timelineRef" />
+    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
   <TheNav />

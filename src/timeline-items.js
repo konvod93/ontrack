@@ -3,7 +3,7 @@ import { HOURS_IN_DAY, MIDNIGHT_HOUR } from './constants'
 import { activities } from './activities'
 import { currentHour } from './functions'
 
-export const timelineItemRefs = ref()
+export const timelineItemRefs = ref([])
 
 export const timelineItems = ref(generateTimelineItems())
 

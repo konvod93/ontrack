@@ -5,7 +5,7 @@ import { scrollToCurrentHour } from '@/timeline-items'
 
 function handleClick() {
   if (currentPage.value === PAGE_TIMELINE) {
-    scrollToCurrentHour()
+    scrollToCurrentHour(true)
   } else {
     navigate(PAGE_TIMELINE)
   }

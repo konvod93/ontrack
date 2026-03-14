@@ -2,18 +2,10 @@ import { ref } from 'vue'
 import { PAGE_TIMELINE } from './constants'
 import { isPageValid } from './validators'
 
-export const timelineRef = ref()
-
 export const currentPage = ref(normalizePageHash())
 
 export function navigate(page) {
-  if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
-    if (timelineRef.value) {
-      timelineRef.value.scrollToHour()
-    }
-  } else if (page !== PAGE_TIMELINE) {
-    document.body.scrollIntoView()
-  }
+  document.body.scrollIntoView()
   currentPage.value = page
 }
 

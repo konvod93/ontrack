@@ -48,7 +48,11 @@ export function scrollToCurrentHour(isSmooth = false) {
 }
 
 export function scrollToHour(hour, isSmooth = true) {
-  const el = hour === MIDNIGHT_HOUR ? document.body : timelineItemRefs.value[hour - 1].$el
-
-  el.scrollIntoView({ behavior: isSmooth ? 'smooth' : 'instant' })
+  if (hour === MIDNIGHT_HOUR) {
+    document.body.scrollIntoView({ behavior: isSmooth ? 'smooth' : 'instant' })
+    return
+  }
+  const ref = timelineItemRefs.value[hour]
+  if (!ref?.$el) return
+  ref.$el.scrollIntoView({ behavior: isSmooth ? 'smooth' : 'instant', block: 'center' })
 }

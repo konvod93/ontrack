@@ -14,7 +14,7 @@ export const routes = {
 export const currentPage = ref(normalizePageHash())
 
 export function navigate(page) {
-  document.body.scrollIntoView()
+  //document.body.scrollIntoView()
   currentPage.value = page
 }
 

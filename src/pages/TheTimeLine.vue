@@ -1,8 +1,9 @@
 <script setup>
 import TimelineItem from '../components/TimelineItem.vue'
 import { timelineItems, timelineItemRefs, scrollToHour, scrollToCurrentHour } from '@/timeline-items'
-import { onActivated } from 'vue'
+import { onActivated, onMounted } from 'vue'
 
+onMounted(scrollToCurrentHour)
 onActivated(scrollToCurrentHour)
 </script>
 
@@ -13,7 +14,11 @@ onActivated(scrollToCurrentHour)
         v-for="timelineItem in timelineItems"
         :key="timelineItem.hour"
         :timeline-item="timelineItem"
-        :ref="timelineItemRefs"
+        :ref="
+          (el) => {
+            if (el) timelineItemRefs[timelineItem.hour] = el
+          }
+        "
         @scroll-to-hour="scrollToHour(timelineItem.hour)"
       />
     </ul>

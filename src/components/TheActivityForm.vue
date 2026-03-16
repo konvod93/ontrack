@@ -1,9 +1,9 @@
 <script setup>
 import BaseButton from './BaseButton.vue'
-import { PlusIcon } from '@heroicons/vue/24/outline'
 import { nextTick, ref } from 'vue'
 import { id } from '@/functions.js'
 import { createActivity } from '@/activities.js'
+import BaseIcon from './BaseIcon.vue'
 
 const name = ref('')
 
@@ -26,7 +26,7 @@ async function submit() {
   <form @submit.prevent="submit" class="sticky bottom-14.25 flex gap-2 border-t bg-white p-4">
     <input type="text" v-model="name" class="w-full rounded border px-4 text-xl" placeholder="Activity name" />
     <BaseButton :disabled="name.trim() === ''">
-      <PlusIcon class="h-8" />
+      <BaseIcon name="Plus" class="h-8" />
     </BaseButton>
   </form>
 </template>

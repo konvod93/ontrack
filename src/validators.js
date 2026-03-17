@@ -1,9 +1,14 @@
 import { NAV_ITEMS, HOURS_IN_DAY, MIDNIGHT_HOUR, BUTTON_TYPES } from './constants.js'
+import { ICONS } from '@/icons.js'
 
 // public validation functions for the application
 
 export function isPageValid(page) {
   return NAV_ITEMS.some((navItem) => navItem.page === page)
+}
+
+export function isIconValid(icon) {
+  return Object.keys(ICONS).includes(icon)
 }
 
 export function isNavItemValid(navItem) {

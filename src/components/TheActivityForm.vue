@@ -27,7 +27,7 @@ async function submit() {
   <form @submit.prevent="submit" class="sticky bottom-14.25 flex gap-2 border-t bg-white p-4">
     <input type="text" v-model="name" class="w-full rounded border px-4 text-xl" placeholder="Activity name" />
     <BaseButton :disabled="name.trim() === ''">
-      <BaseIcon :name="ICON_PLUS" class="h-8" />
+      <BaseIcon :name="ICON_PLUS" />
     </BaseButton>
   </form>
 </template>

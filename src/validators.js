@@ -75,7 +75,7 @@ export function isNumber(value) {
 
 // private validation functions for internal use
 
-export function isNotEmptyString(value) {
+function isNotEmptyString(value) {
   return isString(value) && value.length > 0
 }
 

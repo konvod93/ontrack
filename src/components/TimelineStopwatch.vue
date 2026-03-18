@@ -13,7 +13,7 @@ const props = defineProps({
   timelineItem: {
     required: true,
     type: Object,
-    validatot: isTimelineItemValid
+    validator: isTimelineItemValid
   }
 })
 
@@ -27,7 +27,7 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
 
 watch(
   () => props.timelineItem.activityId,
-  () => updateTimelineItem(props.timelineItem, { activitySeconds: seconds.value })
+  () => updateTimelineItem(props.timelineItem, { activitySeconds: seconds.value * temp })
 )
 
 function start() {
@@ -45,7 +45,7 @@ function stop() {
 function reset() {
   stop()
 
-  updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.actvitySeconds - seconds.value * temp })
+  updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds - seconds.value * temp })
 
   seconds.value = 0
 }

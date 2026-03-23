@@ -7,6 +7,8 @@ import { formatSeconds } from '@/functions'
 import { currentHour } from '@/functions'
 import BaseIcon from './BaseIcon.vue'
 import { useStopwatch } from '@/composables/stopwatch'
+import { updateTimelineItem } from '@/timeline-items'
+import { watch } from 'vue'
 
 const props = defineProps({
   timelineItem: {
@@ -16,7 +18,15 @@ const props = defineProps({
   }
 })
 
-const { seconds, isRunning, start, stop, reset } = useStopwatch(props.timelineItem)
+const { seconds, isRunning, start, stop, reset } = useStopwatch(
+  props.timelineItem.activitySeconds,
+  updateTimelineItemActivitySeconds
+)
+
+watch(() => props.timelineItem.activityId, updateTimelineItemActivitySeconds)
+function updateTimelineItemActivitySeconds() {
+  updateTimelineItem(props.timelineItem, { activitySeconds: seconds.value })
+}
 </script>
 <template>
   <div class="flex w-full gap-2">

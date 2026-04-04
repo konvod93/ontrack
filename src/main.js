@@ -4,12 +4,13 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { timelineItems } from './timeline-items'
 import { activities } from './activities'
+import { isToday } from './time'
 
 function loadState() {
-  console.log('loadState')
   const state = storage.load()
-  if (state.timelineItems) timelineItems.value = state.timelineItems
-  if (state.activities) activities.value = state.activities
+  if (state.timelineItems)
+    timelineItems.value = isToday(new Date(state.DATE)) ? state.timelineItems : timelineItems.value
+  if (state.activities) activities.value = state.activities || activities.value
 }
 
 function saveState() {

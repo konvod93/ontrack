@@ -5,12 +5,12 @@ import App from './App.vue'
 import { timelineItems } from './timeline-items'
 import { activities } from './activities'
 
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'hidden') {
-    console.log('hidden')
-    saveState()
-  }
-})
+function loadState() {
+  console.log('loadState')
+  const state = storage.load()
+  if (state.timelineItems) timelineItems.value = state.timelineItems
+  if (state.activities) activities.value = state.activities
+}
 
 function saveState() {
   storage.save({
@@ -19,7 +19,20 @@ function saveState() {
   })
 }
 
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    loadState()
+  } else {
+    saveState()
+  }
+})
+
+window.addEventListener('beforeunload', () => {
+  saveState()
+})
+
 createApp(App).mount('#app')
+loadState() // <-- загружаем состояние сразу
 
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual'

@@ -1,24 +1,9 @@
-import './assets/main.css'
-import * as storage from './storage'
 import { createApp } from 'vue'
+import { loadState, saveState } from './storage'
 import App from './App.vue'
-import { timelineItems } from './timeline-items'
-import { activities } from './activities'
-import { isToday } from './time'
+import './assets/main.css'
 
-function loadState() {
-  const state = storage.load()
-  if (state.timelineItems)
-    timelineItems.value = isToday(new Date(state.DATE)) ? state.timelineItems : timelineItems.value
-  if (state.activities) activities.value = state.activities || activities.value
-}
-
-function saveState() {
-  storage.save({
-    timelineItems: timelineItems.value,
-    activities: activities.value
-  })
-}
+loadState() // <-- загружаем состояние сразу
 
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') {
@@ -33,7 +18,6 @@ window.addEventListener('beforeunload', () => {
 })
 
 createApp(App).mount('#app')
-loadState() // <-- загружаем состояние сразу
 
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual'

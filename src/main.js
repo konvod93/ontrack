@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import { loadState, saveState } from './storage'
 import App from './App.vue'
 import './assets/main.css'
-import { activeTimelineItem, startTimelineItemTimer } from './timeline-items'
+import { activeTimelineItem } from './timeline-items'
+import { startTimelineItemTimer } from './timeline-item-timer'
 
 loadState() // <-- загружаем состояние сразу
 

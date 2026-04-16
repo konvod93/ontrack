@@ -2,11 +2,8 @@
 import TimelineItem from '../components/TimelineItem.vue'
 import TheTimelineIndicator from '@/components/TheTimelineIndicator.vue'
 import { startCurrentDateTimer, stopCurrentDateTimer } from '@/time'
-import { timelineItems, timelineItemRefs, scrollToCurrentHour, stopTimelineItemTimer } from '@/timeline-items'
+import { timelineItems, timelineItemRefs, scrollToCurrentHour } from '@/timeline-items'
 import { onActivated, onMounted, onDeactivated } from 'vue'
-
-stopTimelineItemTimer() // <-- останавливаем таймер при загрузке страницы,
-// чтобы он не работал в фоновом режиме, если пользователь перезагрузит страницу
 
 onMounted(scrollToCurrentHour)
 onActivated(() => {

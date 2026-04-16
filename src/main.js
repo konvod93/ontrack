@@ -2,14 +2,12 @@ import { createApp } from 'vue'
 import { loadState, saveState } from './storage'
 import App from './App.vue'
 import './assets/main.css'
-import { startTimelineItemTimer, findActiveTimelineItem } from './timeline-items'
+import { activeTimelineItem, startTimelineItemTimer } from './timeline-items'
 
 loadState() // <-- загружаем состояние сразу
 
-const activeTimelineItem = findActiveTimelineItem()
-
-if (activeTimelineItem) {
-  startTimelineItemTimer(activeTimelineItem) // <-- запускаем таймер сразу, чтобы он был готов к работе при загрузке страницы
+if (activeTimelineItem.value) {
+  startTimelineItemTimer(activeTimelineItem.value) // <-- запускаем таймер сразу, чтобы он был готов к работе при загрузке страницы
 }
 
 document.addEventListener('visibilitychange', () => {

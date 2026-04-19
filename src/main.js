@@ -1,9 +1,7 @@
 import { createApp } from 'vue'
-import { loadState, saveState, syncState } from './storage'
+import { syncState } from './storage'
 import App from './App.vue'
 import './assets/main.css'
-
-loadState() // <-- загружаем состояние сразу
 
 syncState()
 
@@ -13,7 +11,7 @@ document.addEventListener('visibilitychange', () =>
 )
 
 window.addEventListener('beforeunload', () => {
-  saveState()
+  syncState()
 })
 
 createApp(App).mount('#app')

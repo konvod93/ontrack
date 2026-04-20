@@ -13,9 +13,9 @@ export function syncState(shouldLoad = true) {
 
   if (activeTimelineItem.value) {
     if (shouldLoad) {
-      startTimelineItemTimer(activeTimelineItem.value)
+      startTimelineItemTimer()
     } else {
-      stopTimelineItemTimer(activeTimelineItem.value)
+      stopTimelineItemTimer()
     }
   }
 }

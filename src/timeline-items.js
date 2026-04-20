@@ -12,9 +12,9 @@ export function initializeTimelineItems(state) {
   const lastActiveAt = new Date(state.lastActiveAt)
   timelineItems.value = state.timelineItems ?? generateTimelineItems()
   if (activeTimelineItem.value && isToday(lastActiveAt)) {
-    timelineItems.value = syncIdleSeconds(state.timelineItems, lastActiveAt)
+    syncIdleSeconds(lastActiveAt)
   } else if (state.timelineItems && !isToday(lastActiveAt)) {
-    timelineItems.value = resetTimelineItems(state.timelineItems)
+    resetTimelineItems()
   }
 }
 
@@ -37,14 +37,6 @@ export function calculateTrackedActivitySeconds(timelineItems, activity) {
     .reduce((total, seconds) => Math.round(total + seconds), 0)
 }
 
-export function resetTimelineItems(timelineItems) {
-  return timelineItems.map((timelineItem) => ({
-    ...timelineItem,
-    activitySeconds: 0,
-    isActive: false
-  }))
-}
-
 export function scrollToCurrentHour(isSmooth = false) {
   scrollToHour(now.value.getHours(), isSmooth)
 }
@@ -59,12 +51,19 @@ export function scrollToHour(hour, isSmooth = true) {
   ref.$el.scrollIntoView({ behavior: isSmooth ? 'smooth' : 'instant', block: 'center' })
 }
 
-function syncIdleSeconds(timelineItems, lastActiveAt) {
-  const activeTimelineItem = timelineItems.find(({ isActive }) => isActive)
-  if (activeTimelineItem) {
-    activeTimelineItem.activitySeconds += calculateIdleSeconds(lastActiveAt)
-  }
-  return timelineItems
+function resetTimelineItems() {
+  timelineItems.value.forEach((timelineItem) => {
+    updateTimelineItem(timelineItem, {
+      activitySeconds: 0,
+      isActive: false
+    })
+  })
+}
+
+function syncIdleSeconds(lastActiveAt) {
+  updateTimelineItem(activeTimelineItem.value, {
+    activitySeconds: activeTimelineItem.value.activitySeconds + calculateIdleSeconds(lastActiveAt)
+  })
 }
 
 function calculateIdleSeconds(lastActiveAt) {

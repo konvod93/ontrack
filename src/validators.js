@@ -19,10 +19,6 @@ export function isButtonTypeValid(type) {
   return BUTTON_TYPES.includes(type)
 }
 
-export function validateTimelineItems(timelineItems) {
-  return timelineItems.every(isTimelineItemValid)
-}
-
 export function isTimelineItemValid({ hour }) {
   return isHourValid(hour)
 }
@@ -38,10 +34,6 @@ export function isHourValid(hour) {
   return isNumber(hour) && isBetween(hour, MIDNIGHT_HOUR, HOURS_IN_DAY - 1)
 }
 
-export function validateActivities(activities) {
-  return activities.every(isActivityValid)
-}
-
 export function validateSelectOptions(options) {
   return options.every(isSelectOptionValid)
 }
@@ -49,16 +41,9 @@ export function validateSelectOptions(options) {
 export function isUndefinedOrNull(value) {
   return isUndefined(value) || isNull(value)
 }
-export function isUndefined(value) {
-  return value === undefined
-}
 
 export function isSelectValueValid(value) {
   return isNumberOrNull(value) || isNotEmptyString(value)
-}
-
-export function isNumberOrNull(value) {
-  return isNumber(value) || isNull(value)
 }
 
 export function isSelectOptionValid({ value, label }) {
@@ -67,10 +52,6 @@ export function isSelectOptionValid({ value, label }) {
 
 export function isNull(value) {
   return value === null
-}
-
-export function isNumber(value) {
-  return typeof value === 'number'
 }
 
 // private validation functions for internal use
@@ -85,4 +66,16 @@ function isString(value) {
 
 function isBetween(value, start, end) {
   return value >= start && value <= end
+}
+
+function isNumberOrNull(value) {
+  return isNumber(value) || isNull(value)
+}
+
+function isUndefined(value) {
+  return value === undefined
+}
+
+function isNumber(value) {
+  return typeof value === 'number'
 }

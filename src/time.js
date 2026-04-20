@@ -2,9 +2,7 @@ import { computed, ref } from 'vue'
 import { HUNDRED_PERCENT, MILLISECONDS_IN_SECOND, SECONDS_IN_DAY, SECONDS_IN_HOUR } from '@/constants'
 
 export function today() {
-  const today = new Date()
-  //today.setHours(0, 0)
-  return today
+  return new Date()
 }
 
 export function tomorrow() {
@@ -43,9 +41,7 @@ let currentDateTimer = null
 
 export function startCurrentDateTimer() {
   now.value = today()
-  currentDateTimer = setInterval(() => {
-    now.value = new Date(now.value.getTime() + MILLISECONDS_IN_SECOND)
-  }, MILLISECONDS_IN_SECOND)
+  currentDateTimer = setInterval(() => (now.value = today()), MILLISECONDS_IN_SECOND)
 }
 
 export function stopCurrentDateTimer() {
